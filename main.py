@@ -15,13 +15,13 @@ class IP:
         while True:
             counter += 1
             try:
-                r = requests.get(url=self.__BASE_URL, params=self.__PARAMS, proxies=proxies)
+                response = requests.get(url=self.__BASE_URL, params=self.__PARAMS, proxies=proxies)
                 assert (
-                        r.status_code == 200 and
-                        'application/json' in r.headers['Content-Type'] and
-                        r.json()['status'] == 'success'
+                        response.status_code == 200 and
+                        'application/json' in response.headers['Content-Type'] and
+                        response.json()['status'] == 'success'
                 ), 'Invalid response or failed status.'
-                return r.json()
+                return response.json()
             except Exception as e:
                 print(f'Fetch IP information failed. Counter: {counter}')
                 traceback.print_exc()

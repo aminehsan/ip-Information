@@ -6,8 +6,8 @@ import requests
 class ipInformation:
     """A class to retrieve IP information."""
 
-    __BASE_URL = 'http://ip-api.com/json'
-    __PARAMS = {'fields': 'status,country,regionName,isp,mobile,proxy,hosting,query'}
+    _BASE_URL = 'http://ip-api.com/json'
+    _PARAMS = {'fields': 'status,country,regionName,isp,mobile,proxy,hosting,query'}
 
     def information(self, proxies: dict = None) -> dict:
         """Fetch IP information."""
@@ -15,7 +15,7 @@ class ipInformation:
         while True:
             counter += 1
             try:
-                response = requests.get(url=self.__BASE_URL, params=self.__PARAMS, proxies=proxies)
+                response = requests.get(url=self._BASE_URL, params=self._PARAMS, proxies=proxies)
                 assert (
                         response.status_code == 200 and
                         'application/json' in response.headers['Content-Type'] and
